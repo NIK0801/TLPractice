@@ -1,24 +1,24 @@
 --Insert Shops
 INSERT INTO books.dbo.Shop
-VALUES ('Хорошие книги', 'ул. Советская, 12'),
-       ('Книга+', 'ул. Кирова, 145'),
-	   ('Буквоед', 'ул.Пролетарская, 57'),
-	   ('Лабиринт', 'ул. Волкова, 111');
+VALUES (N'РҐРѕСЂРѕС€РёРµ РєРЅРёРіРё', N'СѓР». РЎРѕРІРµС‚СЃРєР°СЏ, 12'),
+       (N'РљРЅРёРіР°+', N'СѓР». РљРёСЂРѕРІР°, 145'),
+	   (N'Р‘СѓРєРІРѕРµРґ', N'СѓР».РџСЂРѕР»РµС‚Р°СЂСЃРєР°СЏ, 57'),
+	   (N'Р›Р°Р±РёСЂРёРЅС‚', N'СѓР». Р’РѕР»РєРѕРІР°, 111');
 -- Insert Houses
 INSERT INTO books.dbo.PublishingHouse
-VALUES ('АСТ', 'Деловой комплекс "Москва Сити", башня "Империя"'),
-	   ('Эксмо', 'ул. Зорге, 1c1'),
-	   ('Росмэн', 'ул. Октябрьская, 4к2');
+VALUES (N'РђРЎРў', N'Р”РµР»РѕРІРѕР№ РєРѕРјРїР»РµРєСЃ "РњРѕСЃРєРІР° РЎРёС‚Рё", Р±Р°С€РЅСЏ "РРјРїРµСЂРёСЏ"'),
+	   (N'Р­РєСЃРјРѕ', N'СѓР». Р—РѕСЂРіРµ, 1c1'),
+	   (N'Р РѕСЃРјСЌРЅ', N'СѓР». РћРєС‚СЏР±СЂСЊСЃРєР°СЏ, 4Рє2');
 --Insert Books
 INSERT INTO books.dbo.Book
-VALUES ('Гарри Поттер', 'Дж.Роулинг', 1, 3, 600),
-       ('Острые края', 'Джо Аберкромби', 4, 2, 435),
-	   ('Ведьмак', 'А. Сапковский', 3, 2, 678),
-	   ('Повесть о двух городах', 'Ч.Диккенс', 2, 2, 586),
-	   ('Мрачный Жнец', 'Т.Пратчетт', 2, 3, 342),
-	   ('Амстердам', 'И. Макьюэн', 1, 1, 254),
-	   ('Столпы земли', 'К. Фоллет', 3, 2, 765),
-	   ('Происхождение', 'Д. Браун', 1, 3, 654);
+VALUES (N'Р“Р°СЂСЂРё РџРѕС‚С‚РµСЂ', N'Р”Р¶.Р РѕСѓР»РёРЅРі', 1, 3, 600),
+       (N'РћСЃС‚СЂС‹Рµ РєСЂР°СЏ', N'Р”Р¶Рѕ РђР±РµСЂРєСЂРѕРјР±Рё', 4, 2, 435),
+	   (N'Р’РµРґСЊРјР°Рє', N'Рђ. РЎР°РїРєРѕРІСЃРєРёР№', 3, 2, 678),
+	   (N'РџРѕРІРµСЃС‚СЊ Рѕ РґРІСѓС… РіРѕСЂРѕРґР°С…', N'Р§.Р”РёРєРєРµРЅСЃ', 2, 2, 586),
+	   (N'РњСЂР°С‡РЅС‹Р№ Р–РЅРµС†', N'Рў.РџСЂР°С‚С‡РµС‚С‚', 2, 3, 342),
+	   (N'РђРјСЃС‚РµСЂРґР°Рј', N'Р. РњР°РєСЊСЋСЌРЅ', 1, 1, 254),
+	   (N'РЎС‚РѕР»РїС‹ Р·РµРјР»Рё', N'Рљ. Р¤РѕР»Р»РµС‚', 3, 2, 765),
+	   (N'РџСЂРѕРёСЃС…РѕР¶РґРµРЅРёРµ', N'Р”. Р‘СЂР°СѓРЅ', 1, 3, 654);
 TRUNCATE TABLE books.dbo.Book; 
 --Select Shops
 SELECT *
@@ -33,22 +33,22 @@ SELECT *
 FROM books.dbo.Book;
 
 --Update Book
-UPDATE books.dbo.Book -- Книга с UUID = 2 вышла под другим издательством 
+UPDATE books.dbo.Book -- РљРЅРёРіР° СЃ UUID = 2 РІС‹С€Р»Р° РїРѕРґ РґСЂСѓРіРёРј РёР·РґР°С‚РµР»СЊСЃС‚РІРѕРј 
 SET PublishingHouseId = 3
 WHERE UUID = 2;
 
 --Delete book 
-DELETE -- Книга с UUID = 3 не издается
+DELETE -- РљРЅРёРіР° СЃ UUID = 3 РЅРµ РёР·РґР°РµС‚СЃСЏ
 FROM books.dbo.Book
 WHERE UUID = 3;
 
 -- Task 2. GROUP BY + aggregation func
-SELECT books.dbo.Book.BookName, COUNT(books.dbo.Book.BookName) AS Amount -- Получаем кол-во книг в магазине с UUID = 1
+SELECT books.dbo.Book.BookName, COUNT(books.dbo.Book.BookName) AS Amount -- РџРѕР»СѓС‡Р°РµРј РєРѕР»-РІРѕ РєРЅРёРі РІ РјР°РіР°Р·РёРЅРµ СЃ UUID = 1
 FROM books.dbo.Book WHERE ShopId = 1
 GROUP BY books.dbo.Book.BookName;
 
 -- Task 3. GROUP BY + having
-SELECT * -- Получаем многоэтажки
+SELECT * -- РџРѕР»СѓС‡Р°РµРј РєРЅРёРіРё СЃ РєРѕР»РёС‡РµСЃС‚РІРѕРј СЃС‚СЂР°РЅРёС† Р±РѕР»СЊС€Рµ 500
 FROM books.dbo.Book WHERE ShopId = 1
 GROUP BY books.dbo.Book.UUID, books.dbo.Book.BookName, books.dbo.Book.Author, books.dbo.Book.PublishingHouseId,books.dbo.Book.ShopId, books.dbo.Book.NumberOfPages
 HAVING MAX(books.dbo.Book.NumberOfPages) >= 500;
@@ -57,6 +57,6 @@ HAVING MAX(books.dbo.Book.NumberOfPages) >= 500;
 SELECT books.dbo.Book.BookName,
        books.dbo.Shop.ShopName,
 	   books.dbo.PublishingHouse.PublishingHouseName
-FROM books.dbo.Book -- Имя и Фамилия + Номер квартиры + Номер дома + Улица + Город + Страна
+FROM books.dbo.Book -- РќР°Р·РІР°РЅРёРµ РєРЅРёРіРё + РњР°РіР°Р·РёРЅ + РР·РґР°Р°РµР»СЊСЃС‚РІРѕ
          JOIN books.dbo.Shop ON books.dbo.Book.ShopId = books.dbo.Shop.UUID
          JOIN books.dbo.PublishingHouse ON books.dbo.Book.PublishingHouseId = books.dbo.PublishingHouse.UUID
